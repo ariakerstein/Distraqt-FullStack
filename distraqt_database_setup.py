@@ -15,6 +15,29 @@ class User(Base):
     picture = Column(String(250))
 
 
+# class FlowBlock(Base):
+#     __tablename__ = 'flow_block'
+
+#     title = Column(String(80), nullable=False)
+#     id = Column(Integer, primary_key=True)
+#     description = Column(String(250))
+#     # price = Column(String(8))
+#     # course = Column(String(250))
+#     # category_id = Column(Integer, ForeignKey('category.id'))
+#     # category = relationship(Category)
+#     user_id = Column(Integer, ForeignKey('user.id'))
+#     user = relationship(User)
+
+#     @property
+#     def serialize(self):
+#         """Return object data in easily serializeable format"""
+#         return {
+#             'title': self.title,
+#             'description': self.description,
+#             'id': self.id,
+#         }
+
+
 class Restaurant(Base):
     __tablename__ = 'restaurant'
 
@@ -39,8 +62,8 @@ class MenuItem(Base):
     description = Column(String(250))
     price = Column(String(8))
     course = Column(String(250))
-    restaurant_id = Column(Integer, ForeignKey('restaurant.id'))
-    restaurant = relationship(Restaurant)
+    category_id = Column(Integer, ForeignKey('category.id'))
+    category = relationship(Category)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 

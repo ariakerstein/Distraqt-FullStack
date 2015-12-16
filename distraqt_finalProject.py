@@ -287,9 +287,14 @@ def showRestaurants():
     restaurants = session.query(Restaurant).order_by(asc(Restaurant.name))
     return render_template('d_restaurants.html', restaurants=restaurants)
 
+#(1) test route 
+@app.route('/distraqt')
+def distraqt():
+    return "hello distraqt"
+
+
+
 # Create a new restaurant
-
-
 @app.route('/restaurant/new/', methods=['GET', 'POST'])
 def newRestaurant():
     if 'username' not in login_session:

@@ -1,6 +1,11 @@
 <html>
 
 <head>
+    <script src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 	</head>
 
@@ -27,16 +32,27 @@
 </script>
 <!--end facebook sdk integration-->
 
-<div class = 'pane'>
-<h1>Distraqt</h1>
 
-<a href="{{url_for('newRestaurant')}}" > <h3> Create a New Restaurant (Category)</h3> </a>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Distraqt
+<!--         <img alt="Brand" src="..."> -->
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<div class = 'pane'>
+<!-- <h1>Distraqt</h1> -->
+<div class="jumbotron">
+<a href="{{url_for('newRestaurant')}}" ><h2>Create a New Restaurant (Category)</h2></a>
+</div>
 
 {% for restaurant in restaurants %}
 
-
-
-<a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"> <p>{{restaurant.name}}</p></a>
+<a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"> <h3>{{restaurant.name}}</h3></a>
 
 <p><a href = "{{url_for('editRestaurant',restaurant_id = restaurant.id)}}">Edit Restaurant</a></p>
 
