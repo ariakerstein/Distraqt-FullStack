@@ -44,19 +44,40 @@
 </nav>
 
 
-<div class = 'pane'>
-<!-- <h1>Distraqt</h1> -->
-<div class="jumbotron">
-<a href="{{url_for('newRestaurant')}}" ><h2>Create a New Restaurant (Category)</h2></a>
+<div class="container content">
+<!-- <div class="jumbotron"> -->
+  <div class="jumbotron" id="JumbotronBrand"><h1>Distraqt<h4><p><i>Play your work. <!-- Train your focus.  -->Flow more.</p></i></h4></h1>
+
+<!--insert image!-->
+<!-- <div class="row">
+  <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="/static/images/imgres.jpg" alt="some copy">
+    </a>
+  </div>
+</div> -->
+
+<a
+        <button type="button" class="btn btn-primary pull-right"
+        href="{{url_for('newRestaurant')}}">Let's Flow!&nbsp;
+        <span class="glyphicon glyphicon-record" aria-hidden="true">
+        </span>
+        </a></button>
+        <br></br>
 </div>
+</div>
+<!-- <h1>Distraqt</h1> -->
+<!-- <div class="pane">
+<a href="{{url_for('newRestaurant')}}" ><h2>Create (Category)</h2></a>
+</div> -->
 
 {% for restaurant in restaurants %}
 
 <a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"> <h3>{{restaurant.name}}</h3></a>
 
-<p><a href = "{{url_for('editRestaurant',restaurant_id = restaurant.id)}}">Edit Restaurant</a></p>
+<p><a href = "{{url_for('editRestaurant',restaurant_id = restaurant.id)}}">Edit</a></p>
 
-<p> <a href = "{{url_for('deleteRestaurant',restaurant_id = restaurant.id)}}">Delete Restaurant</a> </p>
+<p> <a href = "{{url_for('deleteRestaurant',restaurant_id = restaurant.id)}}">Delete</a> </p>
 
 
 {% endfor %}
