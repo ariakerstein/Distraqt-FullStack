@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, jsonify, url_for, f
 
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Restaurant, MenuItem, User
+from distraqt_database_setup import Base, Restaurant, MenuItem, User
 
 from flask import session as login_session
 import random
@@ -23,7 +23,7 @@ CLIENT_ID = json.loads(
 APPLICATION_NAME = "Restaurant Menu Application"
 
 # Connect to Database and create database session
-engine = create_engine('sqlite:///distraqtDecember.db')
+engine = create_engine('sqlite:///distraqtDecember3.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -301,7 +301,7 @@ def newRestaurant():
         return redirect('/login')
     if request.method == 'POST':
         newRestaurant = Restaurant(
-            name=request.form['name'], user_id=login_session['user_id'])
+            name=request.form['name'], user_id=login_session['user_id']),
         session.add(newRestaurant)
         flash('New Restaurant %s Successfully Created' % newRestaurant.name)
         session.commit()
@@ -371,6 +371,19 @@ def newMenuItem(restaurant_id):
         return render_template('d_newmenuitem.html', restaurant_id=restaurant_id)
 
 # Edit a menu item
+@app.route('/distraqted')
+def HelloWorld():
+    restaurant = session.query(Restaurant).first()
+    items = session.query(MenuItem).filter_by(restaurant_id=restaurant.id)
+    output = ''
+    for i in items:
+        output += i.name
+        output += '</br>'
+        output += i.description
+        output += '</br>'
+        output += '</br>'
+
+    return output
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])

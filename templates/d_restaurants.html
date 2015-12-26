@@ -65,21 +65,27 @@
         </a></button>
         <br></br>
 </div>
-</div>
+</div><br></br>
 <!-- <h1>Distraqt</h1> -->
 <!-- <div class="pane">
 <a href="{{url_for('newRestaurant')}}" ><h2>Create (Category)</h2></a>
 </div> -->
 
-{% for restaurant in restaurants %}
+<div class="container content">
+<h1>Your Flow Categories</h1>
+</div>
 
+{% for restaurant in restaurants %}
+<div class="container content">
+<div class="well well-sm">
 <a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"> <h3>{{restaurant.name}}</h3></a>
 
 <p><a href = "{{url_for('editRestaurant',restaurant_id = restaurant.id)}}">Edit</a></p>
 
 <p> <a href = "{{url_for('deleteRestaurant',restaurant_id = restaurant.id)}}">Delete</a> </p>
 
-
+</div>
+</div>
 {% endfor %}
 
 <div
