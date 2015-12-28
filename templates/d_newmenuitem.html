@@ -3,37 +3,144 @@
 <head>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+<script src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+<!-- <link rel=stylesheet type=text/css href="{{ url_for('static', filename='scripts.js') }}"> -->
+
       </head>
 <body>
-
-<!-- <div class="container content"> -->
-<div class = 'pane'>
-<!-- <div class="jumbotron"> -->
-
 <h1>New flow block</h1>
+<!-- <div class="container content"> -->
+      <div class="panel-body">
+        <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h1 class="modal-title" id='msg' class='text-center col-centered'></h1>
+        <h1> <span class="label label-default" id='msg' </span></h1>
+        <h1 class="modal-title" id='time' class='text-center'></h1>
+        <h1 class="modal-title" id='alert' class='text-center'></h1>
+        <h2 id="result"></h2>
+</div>
+<!-- <div class="modal-body"> -->
+
+<div id = "myAlert" class = "page-header">
+   <a href = "#" class = "close" data-dismiss = "alert">&times;</a>
+   <strong>Nice work - you're done!</strong>
+</div>
+
+
+  </div>
+</div>
+</div>
+
+
+<!--   <div class='container-fluid'>
+    <div class='col-xs-12'> -->
+
+
+<div class="container content">
+<div class="jumbotron">
+<!--   <div class="page-header"> -->
+<!--   <h1>Distraqt</h1> -->
+<div class="panel panel-default">
+  <div class="panel-body col-xs-8">
+            <label for='work'>Flow timer (min): </label>
+          <input autofocus id='work' type='text' min=0 max=200 value='25' >
+  <div class="btn-group" role="group" >
+      <button id='start' class='btn btn-primary center-block'>Start
+<span class="glyphicon glyphicon-record">
+      </button>
+      <button id='pause' class='btn btn-primary center-block pause'>Pause
+<!-- <span class="glyphicon glyphicon-pause"> -->
+      </button>
+      <button id='reset' class='btn btn-primary center-block'>Reset</button>
+    </div><!--Row Closer-->
+  </div>
+
+</div>
+
+   <form action="#" class="form-horizontal" method="post">
+        <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+       
+
+    <div class="form-group">
+      <label for="title" class="col-sm-12 control-label"></label>
+      <div class="col-sm-10">
 
 <form action="#" method = 'post'>
 
-      <p>Name:</p>
-            <input type ='text' size='30' name='name' placeholder="What's flowing?">
-      <p>Notes: </p>
-            <input type ='text' size='30' name='description' placeholder="What are you working on?" style="height: 60px">
-      <p>Price:</p>
-            <input type ='text' size='30' name='price'>
-      <p>Course:</p>
-            <input type ='radio'  name='course' value ='Appetizer'>Appetizer</br>
-            <input type ='radio'  name='course' value ='Entree'>Entree</br>
-            <input type ='radio' name='course' value ='Dessert'>Dessert</br>
-            <input type ='radio'  name='course' value ='Beverage'>Beverage</br>
-      </br>
+      <div class="form-group">
+            <input class="form-control" type ='text' size='30' name='name' placeholder="Title">      
+</div>
 
+<!--         <input class="form-control" id="title" placeholder="What's flowing?" name="name" type="text" value="{{ request.form.get('title', '') }}">
+      </div> -->
+    </div>
+    <div class="form-group">
+      <label for="Content" class="col-sm-12 control-label"></label>
+      <div class="col-sm-10">
 
-<input type='submit' value='Create'>
+<!--       <p>Notes: </p> -->
+            <input class="form-control" type ='text' size='30' id="description" name='description' 
+            placeholder="What are you working on...?" style="height: 300px">
+
+<!--         <textarea class="form-control" type='text' id="description" placeholder="Enter notes here..." name="content" style="height: 300px;">{{ request.form.get('content', '') }}</textarea> -->
+<!--     <div class="form-group">
+      <label for="category" class="col-sm-2 control-label">Category</label>
+      <div class="col-sm-10">
+        <input class="form-control" id="category" placeholder="Category" name="title" type="text" value="{{ request.form.get('title', '') }}"> -->
+
+<div class="panel panel-default">
+  <div class="panel-body col-xs-8 pull-right">
+
+<input type='submit' class='btn btn-primary pull-right' value='Create'>
 
 <!-- </div> -->
 </div>
 
 </form>
+<!-- 
+ <button class="btn btn-primary pull-right" id="saveEntry" type="submit">Save it!&nbsp;
+        <span class="glyphicon glyphicon-plus">
+        </button>
+        <a class="btn btn-default pull-right" href="#">Cancel</a> -->
+<!--   <div class="container-fluid">
+    <div class="form-group"> -->
+<!--       <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox"> -->
+<!--         <br></br>
+          <label class="checkbox pull-right" id="checkbox">
+            <input name="published" type="checkbox" value="y">Publish
+          </label>
+            </div> -->
+
+
+      </div>
+    </div>
+
+      </div>
+    </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+  </div>
+    </div>
+
+
+
+
+
+
+{% block footer %}
+      <footer>
+        <hr />
+        <p>Ari Akerstein, &copy; 2015</p>
+      </footer>
+{% endblock %}
 
 </body>
 </html>

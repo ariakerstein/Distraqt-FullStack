@@ -1,10 +1,11 @@
 <html>
 	
 <head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
 	</head>
 	<body>
-		<div class = 'pane'>
+		<div class = 'container content'>
 		<h1>{{ restaurant.name }}</h1>
 		
 		{% with messages = get_flashed_messages() %}
@@ -20,7 +21,32 @@
 
     {% if items !=[] %}
 
-		<a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Create New Flow Block</a>
+<!-- 		<a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Create New Flow Block</a> -->
+<br></br>
+
+<div class="container content">
+<!-- <div class="jumbotron"> -->
+  <div class="jumbotron" id="JumbotronBrand"><h1>Distraqt</h1>
+
+<!--insert image!-->
+<!-- <div class="row">
+  <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+      <img src="/static/images/imgres.jpg" alt="some copy">
+    </a>
+  </div>
+</div> -->
+
+<a
+        <button type="button" class="btn btn-primary pull-right"
+        href="{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">New Flow Block&nbsp;
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
+        </span>
+        </a></button><br></br>
+        <br></br>
+</div>
+
+
 	</br></br>
 
 	<!-- <h2>Appetizers</h2>
@@ -50,12 +76,12 @@
 		</br></br> -->
 
 	<h2>Flow Blocks</h2>
-
+		<div class = 'container content'>
+		<div class="well well-sm">
 		{% for i in items %}
-		{% if i.course == 'Entree' %}
+<!-- 		{% if i.course == 'Entree' %} -->
 
 		<p>{{i.name}}</p>
-	
 
 		<p>{{i.description}}</p>
 	
@@ -67,11 +93,22 @@
 	<a href='{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id=i.id ) }}' >Delete</a>
 </br>
 </br>
-        {% endif %}
+<!--         {% endif %} -->
+		{% else %}
+		<p> You currently have no menu items (flow blocks). <p>
+		<br></br>
+
+<a
+        <button type="button" class="btn btn-primary"
+        href="{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Let's Flow&nbsp;
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
+        </span>
+        </a></button><br></br>
 
 		{% endfor %}
 		
-		
+		</div>
+		</div>
 
 		</br></br>
 
@@ -123,13 +160,20 @@
 
 		{% endfor %} -->
 		
-		
+	
 
-		{% else %}
-		<p> You currently have no menu items (flow blocks). <p>
-		<a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Create New Item (flow block)</a>
+
+
+<!-- 		<a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Create New Item (flow block)</a> -->
 			{% endif %}
 </div>
+
+{% block footer %}
+      <footer>
+        <hr />
+        <p>Ari Akerstein, &copy; 2015</p>
+      </footer>
+{% endblock %}
 	</body>
 
 </html>

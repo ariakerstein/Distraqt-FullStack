@@ -1,4 +1,4 @@
-// alert("test")
+// alert("test");
 
 //http://codereview.stackexchange.com/questions/102456/pomodoro-timer-via-setinterval
 

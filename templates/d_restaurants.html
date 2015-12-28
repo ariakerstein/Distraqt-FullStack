@@ -37,6 +37,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Distraqt
+<!--       <a class="navbar-brand" href="#">New Block -->
 <!--         <img alt="Brand" src="..."> -->
       </a>
     </div>
@@ -46,7 +47,7 @@
 
 <div class="container content">
 <!-- <div class="jumbotron"> -->
-  <div class="jumbotron" id="JumbotronBrand"><h1>Distraqt<h4><p><i>Play your work. <!-- Train your focus.  -->Flow more.</p></i></h4></h1>
+  <div class="jumbotron" id="JumbotronBrand"><h1>Distraqt<h4><p><i> Train your focus.</p></i></h4></h1>
 
 <!--insert image!-->
 <!-- <div class="row">
@@ -72,17 +73,27 @@
 </div> -->
 
 <div class="container content">
-<h1>Your Flow Categories</h1>
+<h2>Categories
+
+<a
+        <button type="button" class="btn"
+        href="{{url_for('newRestaurant')}}">New Category&nbsp;
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
+        </span>
+        </a></button>
+        </h2>
+
 </div>
+
 
 {% for restaurant in restaurants %}
 <div class="container content">
 <div class="well well-sm">
 <a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"> <h3>{{restaurant.name}}</h3></a>
 
-<p><a href = "{{url_for('editRestaurant',restaurant_id = restaurant.id)}}">Edit</a></p>
+<a href = "{{url_for('editRestaurant',restaurant_id = restaurant.id)}}">Edit</a>
 
-<p> <a href = "{{url_for('deleteRestaurant',restaurant_id = restaurant.id)}}">Delete</a> </p>
+<a href = "{{url_for('deleteRestaurant',restaurant_id = restaurant.id)}}">Delete</a> 
 
 </div>
 </div>
@@ -97,6 +108,11 @@
 
 </div>
 </div>
+{% block footer %}
+      <footer>
+        <hr />
+        <p>Ari Akerstein, &copy; 2015</p>
+      </footer>
+{% endblock %}
 </body>
-
 </html>
