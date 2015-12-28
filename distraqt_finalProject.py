@@ -172,9 +172,17 @@ def gconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
+    # See if a user exists, if it doesn't make a new one
+    user_id = getUserID(login_session['email'])
+    if not user_id:
+        user_id = createUser(login_session)
+    login_session['user_id'] = user_id
+
+
     # Store the access token in the session for later use.
     login_session['credentials'] = credentials.access_token
     login_session['gplus_id'] = gplus_id
+    login_session['user_id'] = user_id
 
     # Get user info
     userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
@@ -182,12 +190,10 @@ def gconnect():
     answer = requests.get(userinfo_url, params=params)
 
     data = answer.json()
-
     login_session['username'] = data['name']
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
 
-    # See if a user exists, if it doesn't make a new one
 
     output = ''
     output += '<h1>Welcome, '
