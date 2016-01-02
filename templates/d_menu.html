@@ -18,8 +18,11 @@
   </div>
 </nav>
 
+<html>
+	
+
 <!-- 		<div class = 'pane'> -->
-<!-- 		<h1>{{ restaurant.name }}</h1> -->
+		<h1>{{ restaurant.name }}</h1>
 		
 		{% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -33,61 +36,14 @@
     {% endwith %}
 
     {% if items !=[] %}
-<!--     </div> -->
-    {% endif %}
-		
-<!-- 		{% with messages = get_flashed_messages() %}
-      {% if messages %}
-          
-        <ul>
-        {% for message in messages %}
-            <li> <strong> {{ message }} </strong> </li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-    {% endwith %}
 
-    {% if items !=[] %} -->
-
-<!-- <a
-        <button type="button" class="btn btn-primary"
-        href="{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Let's Flow&nbsp;
-        <span class="glyphicon glyphicon-plus" aria-hidden="true">
-        </span>
-        </a></button><br></br> -->
-
-<!-- 		<a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Create New Flow Block</a>
-<br></br> -->
-
-<div class="container content">
-<!-- <div class="jumbotron"> -->
-  <div class="jumbotron" id="JumbotronBrand"><h1>{{ restaurant.name }}</h1>
-
-<!--insert image!-->
-<!-- <div class="row">
-  <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-      <img src="/static/images/imgres.jpg" alt="some copy">
-    </a>
-  </div>
-</div> -->
-
-<a
-        <button type="button" class="btn btn-primary pull-right"
-        href="{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Let's Flow!&nbsp;
-        <span class="glyphicon glyphicon-plus" aria-hidden="true">
-        </span>
-        </a></button><br></br>
-        <br></br>
-</div>
-
-
+		<a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Create New Item</a>
 	</br></br>
 
 	<h2>Appetizers</h2>
 
 		{% for i in items %}
-		{% if i.course %}
+		{% if i.course == 'Appetizer' %}
 
 		<p>{{i.name}}</p>
 	
@@ -110,18 +66,18 @@
 
 		</br></br>
 
-	<h2>Flow Blocks</h2>
-		<div class = 'container content'>
-		<div class="well well-sm">
+	<h2>Entrees</h2>
+
 		{% for i in items %}
-<!-- 		{% if i.course == 'Entree' %} -->
+		{% if i.course == 'Entree' %}
 
 		<p>{{i.name}}</p>
+	
 
 		<p>{{i.description}}</p>
 	
 
-<!-- 		<p>{{i.price}}</p> -->
+		<p>{{i.price}}</p>
 	
 		<a href='{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id=i.id ) }}' >Edit</a>
 	</br>
@@ -129,21 +85,10 @@
 </br>
 </br>
         {% endif %}
-		{% else %}
-		<p> You currently have no menu items (flow blocks). <p>
-		<br></br>
-
-<a
-        <button type="button" class="btn btn-primary"
-        href="{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Let's Flow&nbsp;
-        <span class="glyphicon glyphicon-plus" aria-hidden="true">
-        </span>
-        </a></button><br></br>
 
 		{% endfor %}
 		
-		</div>
-		</div>
+		
 
 		</br></br>
 
@@ -195,14 +140,16 @@
 
 		{% endfor %}
 		
-	
+		
 
-
-
-		<a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">
-		Create New Item (flow block)</a>
+		{% else %}
+		<p> You currently have no menu items. <p>
+		<a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Create New Item</a>
 			{% endif %}
 </div>
+	</body>
+
+</html>
 
 	</body>
 {% block footer %}
