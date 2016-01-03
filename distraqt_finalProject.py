@@ -374,20 +374,20 @@ def newMenuItem(restaurant_id):
     else:
         return render_template('d_newmenuitem.html', restaurant_id=restaurant_id)
 
-# Edit a menu item
-@app.route('/distraqted')
-def HelloWorld():
-    restaurant = session.query(Restaurant).first()
-    items = session.query(MenuItem).filter_by(restaurant_id=restaurant.id)
-    output = ''
-    for i in items:
-        output += i.name
-        output += '</br>'
-        output += i.description
-        output += '</br>'
-        output += '</br>'
+# # Edit a menu item
+# @app.route('/distraqted')
+# def HelloWorld():
+#     restaurant = session.query(Restaurant).first()
+#     items = session.query(MenuItem).filter_by(restaurant_id=restaurant.id)
+#     output = ''
+#     for i in items:
+#         output += i.name
+#         output += '</br>'
+#         output += i.description
+#         output += '</br>'
+#         output += '</br>'
 
-    return output
+#     return output
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])
