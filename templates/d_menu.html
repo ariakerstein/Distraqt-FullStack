@@ -10,7 +10,8 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Distraqt
+      <a class="navbar-brand" href="{{url_for('showRestaurants')}}">Distraqt
+      <a class="navbar-brand" href="#">Blog
 <!--       <a class="navbar-brand" href="#">New Block -->
 <!--         <img alt="Brand" src="..."> -->
       </a>
@@ -18,7 +19,6 @@
   </div>
 </nav>
 
-<html>
 	
 
 <!-- 		<div class = 'pane'> -->
@@ -42,9 +42,12 @@
 
 
 		{% for i in items %}
-<div class="well well-sm"
+<div class="container-fluid">
+	<div class="well well-sm">
 		<p>{{i.name}}</p>
+		<p>{{i.description}}</p>
 	</div>
+</div>
 
 <!-- 		<p>{{i.description}}</p> -->
 {% endfor %}
