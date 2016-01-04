@@ -59,7 +59,7 @@
 	<span class="glyphicon glyphicon-plus" aria-hidden="true">
 	</span>
 	</a></button></h2>
-<!-- 	</br></br> -->
+	</br></br>
 </div>
 
 		{% for i in items %}
@@ -179,8 +179,16 @@
 		
 
 		{% else %}
-		<p> You currently have no menu items. <p>
-		<a href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">Create New Item</a>
+<div>
+<a 
+	<button type="button" class="btn"
+	href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">
+	<h2>Create New Item&nbsp;
+	<span class="glyphicon glyphicon-plus" aria-hidden="true">
+	</span>
+	</a></button></h2>
+	</br></br>
+</div>
 			{% endif %}
 </div>
 	</body>

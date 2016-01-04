@@ -60,12 +60,18 @@
 </div> -->
 
 <a
-        <button type="button" class="btn btn-primary pull-right"
+        <button type="button" id="signinButton" class="btn btn-primary pull-right"
         href="{{url_for('showLogin')}}">Sign-up Now&nbsp;
         <!-- <span class="glyphicon glyphicon-record" aria-hidden="true"> -->
         </span>
         </a></button>
         <br></br>
+
+data.login_session['picture']
+
+
+
+
 </div>
 </div><br></br>
 <!-- <h1>Distraqt</h1> -->
@@ -90,7 +96,7 @@
 {% for restaurant in restaurants %}
 <div class="container content">
 <div class="well well-sm">
-<a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"> <h3>{{restaurant.name}}</h3></a>
+<a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"> <h4>{{restaurant.name}}</h4></a>
 
 <a href = "{{url_for('editRestaurant',restaurant_id = restaurant.id)}}">Edit</a>
 
