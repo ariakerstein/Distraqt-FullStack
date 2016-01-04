@@ -54,11 +54,12 @@
 <div>
 <a 
 	<button type="button" class="btn"
-	href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}"><h2>Create New Item&nbsp;</h2></a>
+	href = "{{url_for('newMenuItem', restaurant_id = restaurant.id )}}">
+	<h2>Create New Item&nbsp;
 	<span class="glyphicon glyphicon-plus" aria-hidden="true">
 	</span>
-	</a></button>
-	</br></br>
+	</a></button></h2>
+<!-- 	</br></br> -->
 </div>
 
 		{% for i in items %}
