@@ -38,7 +38,7 @@ function checkStatus() {
     $('#pause').removeClass('disabled');
     $('#reset').removeClass('disabled');
     $('#start').addClass('disabled');
-    $('#saveEntry').hide();
+    $('#saveEntry').addClass('disabled');
     $('#checkbox').hide();
     $('#myAlert').hide();
     // $('#myAlert-fail').hide();
@@ -121,7 +121,7 @@ function startTimer() {
     $('#pause').addClass('resume');
     $('#pause').removeClass('pause');
     $('.resume').click(resume);
-    $('#saveEntry').show();
+    $('#saveEntry').removeClass('disabled');
     $('#checkbox').show();
     $('#myAlert').hide();
     $('#start').hide();
@@ -136,7 +136,7 @@ function startTimer() {
     $('#pause').html('Pause');
     $('#pause').addClass('pause');
     $('#pause').removeClass('resume');
-    $('#saveEntry').hide();
+    // $('#saveEntry').addClass('disabled');
     $('#checkbox').show();
     timer = startTimer();
     $('#myAlert').hide();
@@ -159,6 +159,9 @@ function startTimer() {
     $('#start').show();
     $('.page-header').hide();
     $('#work').show();
+    $('#saveEntry').removeClass('disabled');
+
+
     // $('#pause').html('Resume');
     // $('#pause').addClass('resume');
     // $('#pause').removeClass('pause');
