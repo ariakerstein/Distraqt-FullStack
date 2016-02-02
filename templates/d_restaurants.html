@@ -37,6 +37,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="{{url_for('showRestaurants')}}">Distraqt
+      <a class="navbar-brand" href="#">Weekly Planner
       <a class="navbar-brand" href="#">Blog
 <!--       <a class="navbar-brand" href="#">New Block -->
 <!--         <img alt="Brand" src="..."> -->
@@ -48,7 +49,7 @@
 
 <div class="container content">
 <!-- <div class="jumbotron"> -->
-  <div class="jumbotron" id="JumbotronBrand"><h1>Distraqt<h4><p><i> Train your focus.</p></i></h4></h1>
+  <div class="jumbotron" id="JumbotronBrand"><h1>Distraqt<h4><p><i> Deeper Work</p></i></h4></h1>
 
 <!--insert image!-->
 <!-- <div class="row">
@@ -67,7 +68,7 @@
         </a></button>
         <br></br>
 
-data.login_session['picture']
+
 
 
 
@@ -92,10 +93,9 @@ data.login_session['picture']
 
 </div>
 
-
 {% for restaurant in restaurants %}
 <div class="container content">
-<div class="well well-sm">
+<!-- <div class="well well-sm"> -->
 <a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"> <h4>{{restaurant.name}}</h4></a>
 
 <a href = "{{url_for('editRestaurant',restaurant_id = restaurant.id)}}">Edit</a>
@@ -111,7 +111,7 @@ data.login_session['picture']
         <br></br>
 
 
-</div>
+<!-- </div> -->
 </div>
 {% endfor %}
 

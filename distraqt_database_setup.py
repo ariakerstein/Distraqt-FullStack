@@ -40,6 +40,7 @@ class MenuItem(Base):
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
     price = Column(String(8))
+    timer = Column(String(8))
     course = Column(String(250))
     restaurant_id = Column(Integer, ForeignKey('restaurant.id'))
     restaurant = relationship(Restaurant)
@@ -58,6 +59,7 @@ class MenuItem(Base):
         }
 
 # engine = create_engine('sqlite:///distraqtJan5.db')
+# engine = create_engine('sqlite:///distraqtDecember27.db')
 engine = create_engine('sqlite:///distraqtDecember27.db')
 
 

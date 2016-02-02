@@ -25,7 +25,7 @@ function checkStatus() {
     $('#reset').addClass('disabled');
     $('#myAlert').hide();
     $('#work').show();
-    $('#saveEntry').show();
+    $('#saveEntry').addClass('disabled');
     $('#checkbox').show();
     $('.col-xs-6').show();
     $('.modal-header').hide();
@@ -38,7 +38,7 @@ function checkStatus() {
     $('#pause').removeClass('disabled');
     $('#reset').removeClass('disabled');
     $('#start').addClass('disabled');
-    $('#saveEntry').addClass('disabled');
+    $('#saveEntry').show();
     $('#checkbox').hide();
     $('#myAlert').hide();
     // $('#myAlert-fail').hide();
@@ -75,11 +75,12 @@ function startTimer() {
     // alert() // Plays default alert "bottle"
     // alert.volume(0.5)
       clearInterval(timer);
-      $('#saveEntry').show();
+      $('#saveEntry').addClass('disabled');
       $('#checkbox').show();
       // alert("You're done!");
       $('#myAlert').show();
       $('#work').show();
+      $('#saveEntry').show();
       // $('#label').show();
       // $alert('purr')
       // alert = require('alert')
@@ -103,7 +104,6 @@ function startTimer() {
    $('#myAlert').hide();
    $('#start').hide();
    $('.page-header').hide();
-   $('#work').hide();
    $('#work').hide();
    // $('#label').hide();
    // $('#myAlert-fail').hide()

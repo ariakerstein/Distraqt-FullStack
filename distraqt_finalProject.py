@@ -24,6 +24,7 @@ APPLICATION_NAME = "Restaurant Menu Application"
 
 # Connect to Database and create database session
 # engine = create_engine('sqlite:///distraqtJan5.db')
+# engine = create_engine('sqlite:///distraqtDecember27.db')
 engine = create_engine('sqlite:///distraqtDecember27.db')
 Base.metadata.bind = engine
 
@@ -165,7 +166,7 @@ def gconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
-    stored_credentials = login_session.get('credentials')
+    stored_credentials = login_session.get('access_token')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_credentials is not None and gplus_id == stored_gplus_id:
         response = make_response(json.dumps('Current user is already connected.'),
@@ -173,17 +174,11 @@ def gconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
-    # See if a user exists, if it doesn't make a new one
-    user_id = getUserID(login_session['email'])
-    if not user_id:
-        user_id = createUser(login_session)
-    login_session['user_id'] = user_id
-
 
     # Store the access token in the session for later use.
-    login_session['credentials'] = credentials.access_token
+    login_session['access_token'] = credentials.access_token
     login_session['gplus_id'] = gplus_id
-    login_session['user_id'] = user_id
+    login_session['provider'] = 'google'
 
     # Get user info
     userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
@@ -195,6 +190,11 @@ def gconnect():
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
 
+    # See if a user exists, if it doesn't make a new one
+    user_id = getUserID(login_session['email'])
+    if not user_id:
+        user_id = createUser(login_session)
+    login_session['user_id'] = user_id
 
     output = ''
     output += '<h1>Welcome, '
