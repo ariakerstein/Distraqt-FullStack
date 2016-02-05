@@ -95,8 +95,8 @@
 
 {% for restaurant in restaurants %}
 <div class="container content">
-<!-- <div class="well well-sm"> -->
-<a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"> <h4>{{restaurant.name}}</h4></a>
+<div class="well well-sm">
+<a href = "{{url_for('showMenu', restaurant_id = restaurant.id)}}"><h4>{{restaurant.name}}<span class="badge">47&nbsp;&nbsp;</span></h4></a>
 
 <a href = "{{url_for('editRestaurant',restaurant_id = restaurant.id)}}">Edit</a>
 
@@ -111,7 +111,7 @@
         <br></br>
 
 
-<!-- </div> -->
+</div>
 </div>
 {% endfor %}
 

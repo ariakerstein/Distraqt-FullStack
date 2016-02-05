@@ -6,6 +6,8 @@ from datetime import datetime
 
 Base = declarative_base()
 
+# class sqlalchemy.types.TIMESTAMP(timezone=False)
+    
 
 class User(Base):
     __tablename__ = 'user'
@@ -40,7 +42,7 @@ class MenuItem(Base):
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
     price = Column(String(8))
-    timer = Column(String(8))
+    # timer = Column(String(8))
     course = Column(String(250))
     restaurant_id = Column(Integer, ForeignKey('restaurant.id'))
     restaurant = relationship(Restaurant)
