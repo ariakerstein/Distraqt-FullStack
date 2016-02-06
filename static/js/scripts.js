@@ -38,7 +38,7 @@ function checkStatus() {
     $('#pause').removeClass('disabled');
     $('#reset').removeClass('disabled');
     $('#start').addClass('disabled');
-    $('#saveEntry').show();
+    $('#saveEntry').removeClass('disabled');
     $('#checkbox').hide();
     $('#myAlert').hide();
     // $('#myAlert-fail').hide();
@@ -80,7 +80,7 @@ function startTimer() {
       // alert("You're done!");
       $('#myAlert').show();
       $('#work').show();
-      $('#saveEntry').show();
+      $('#saveEntry').removeClass('disabled');
       // $('#label').show();
       // $alert('purr')
       // alert = require('alert')
@@ -159,7 +159,7 @@ function startTimer() {
     $('#start').show();
     $('.page-header').hide();
     $('#work').show();
-    $('#saveEntry').removeClass('disabled');
+    $('#saveEntry').addClass('disabled');
 
 
     // $('#pause').html('Resume');
