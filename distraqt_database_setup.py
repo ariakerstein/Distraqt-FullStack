@@ -1,13 +1,13 @@
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
-from datetime import datetime
+import datetime
 
 Base = declarative_base()
+# last_time = Column(TIMESTAMP, server_default=func.now(), onupdate=func.current_timestamp())
 
 # class sqlalchemy.types.TIMESTAMP(timezone=False)
-    
 
 class User(Base):
     __tablename__ = 'user'
@@ -16,7 +16,7 @@ class User(Base):
     name = Column(String(250), nullable=False)
     email = Column(String(250), nullable=False)
     picture = Column(String(250))
-
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
 
 class Restaurant(Base):
     __tablename__ = 'restaurant'
@@ -25,6 +25,7 @@ class Restaurant(Base):
     name = Column(String(250), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
 
     @property
     def serialize(self):
@@ -48,6 +49,7 @@ class MenuItem(Base):
     restaurant = relationship(Restaurant)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
+    created_date = Column(DateTime, default=datetime.datetime.utcnow)
 
     @property
     def serialize(self):
@@ -62,7 +64,8 @@ class MenuItem(Base):
 
 # engine = create_engine('sqlite:///distraqtJan5.db')
 # engine = create_engine('sqlite:///distraqtDecember27.db')
-engine = create_engine('sqlite:///distraqtDecember27.db')
+# engine = create_engine('sqlite:///distraqtDecember27.db')
+engine = create_engine('sqlite:///distraqtFeb25.db')
 
 
 Base.metadata.create_all(engine)
