@@ -26,6 +26,7 @@ class Restaurant(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
     created_date = Column(DateTime, default=datetime.datetime.utcnow)
+    menu_items = relationship("MenuItem", cascade="all, delete-orphan")
 
     @property
     def serialize(self):
@@ -65,7 +66,8 @@ class MenuItem(Base):
 # engine = create_engine('sqlite:///distraqtJan5.db')
 # engine = create_engine('sqlite:///distraqtDecember27.db')
 # engine = create_engine('sqlite:///distraqtDecember27.db')
-engine = create_engine('sqlite:///distraqtFeb25.db')
+# engine = create_engine('sqlite:///distraqtFeb25.db')
+engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
 
 
 Base.metadata.create_all(engine)
