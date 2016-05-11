@@ -24,7 +24,9 @@ APPLICATION_NAME = "Restaurant Menu Application"
 
 
 # Connect to Database and create database session
-engine = create_engine('sqlite:///restaurantmenuwithusersTesting.db')
+# engine = create_engine('sqlite:///restaurantmenuwithusersTesting.db')
+engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
+
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)

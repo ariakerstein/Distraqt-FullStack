@@ -8,7 +8,9 @@ from sqlalchemy.orm import sessionmaker
 
 # Create session and connect to DB
 # engine = create_engine('sqlite:///restaurantmenu.db')
-engine = create_engine('sqlite:///distraqt.db')
+# engine = create_engine('sqlite:///distraqt.db')
+engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
+
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
