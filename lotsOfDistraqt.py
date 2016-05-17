@@ -27,7 +27,7 @@ session.add(User1)
 session.commit()
 
 # Menu for UrbanBurger
-restaurant1 = Restaurant(user_id=1, name="Urban Burger")
+restaurant1 = Restaurant(user_id=1, name="reading")
 
 session.add(restaurant1)
 session.commit()
@@ -89,7 +89,7 @@ session.commit()
 
 
 # Menu for Super Stir Fry
-restaurant2 = Restaurant(user_id=1, name="Super Stir Fry")
+restaurant2 = Restaurant(user_id=1, name="Building distraqt")
 
 session.add(restaurant2)
 session.commit()
@@ -133,7 +133,7 @@ session.commit()
 
 
 # Menu for Panda Garden
-restaurant1 = Restaurant(user_id=1, name="Panda Garden")
+restaurant1 = Restaurant(user_id=1, name="Writing")
 
 session.add(restaurant1)
 session.commit()
@@ -253,7 +253,7 @@ session.commit()
 
 
 # Menu for Andala's
-restaurant1 = Restaurant(user_id=1, name="Andala\'s")
+restaurant1 = Restaurant(user_id=1, name="Juggling")
 
 session.add(restaurant1)
 session.commit()
@@ -291,7 +291,7 @@ session.commit()
 
 
 # Menu for Auntie Ann's
-restaurant1 = Restaurant(user_id=1, name="Auntie Ann\'s Diner' ")
+restaurant1 = Restaurant(user_id=1, name="writing the great israeli novel")
 
 session.add(restaurant1)
 session.commit()
@@ -341,7 +341,7 @@ session.commit()
 
 
 # Menu for Cocina Y Amor
-restaurant1 = Restaurant(user_id=1, name="Cocina Y Amor ")
+restaurant1 = Restaurant(user_id=1, name="Planning")
 
 session.add(restaurant1)
 session.commit()
@@ -360,7 +360,7 @@ session.add(menuItem2)
 session.commit()
 
 
-restaurant1 = Restaurant(user_id=1, name="State Bird Provisions")
+restaurant1 = Restaurant(user_id=1, name="Meditating")
 session.add(restaurant1)
 session.commit()
 

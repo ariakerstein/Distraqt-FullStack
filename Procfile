@@ -1,1 +1,1 @@
-web: gunicorn project:app
+web: python distraqt_finalProject.py
