@@ -298,9 +298,9 @@ def showRestaurants():
     return render_template('d_restaurants.html', restaurants=restaurants)
 
 #(1) test route 
-@app.route('/distraqt')
+@app.route('/welcomeSplash')
 def distraqt():
-    return "hello distraqt"
+    return render_template('d_splash.html')
 
 
 
