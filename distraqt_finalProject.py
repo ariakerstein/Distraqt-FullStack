@@ -212,7 +212,6 @@ def gconnect():
 
 # User Helper Functions
 
-
 def createUser(login_session):
     newUser = User(name=login_session['username'], email=login_session[
                    'email'], picture=login_session['picture'])
@@ -309,8 +308,8 @@ def distraqt():
 # Create a new restaurant
 @app.route('/restaurant/new/', methods=['GET', 'POST'])
 def newRestaurant():
-    if 'username' not in login_session:
-        return redirect('/welcomeSplash')
+    # if 'username' not in login_session:
+    #     return redirect('/welcomeSplash')
     if request.method == 'POST':
         newRestaurant = Restaurant(
             name=request.form['name'], user_id=login_session['user_id'])
@@ -323,8 +322,8 @@ def newRestaurant():
 
 @app.route('/restaurant/<int:restaurant_id>/edit/', methods=['GET', 'POST'])
 def editRestaurant(restaurant_id):
-    if 'username' not in login_session:
-        return redirect('/login')
+    # if 'username' not in login_session:
+    #     return redirect('/login')
     if user.id != restaurant.user_id:
         return redirect('/login')
     editedRestaurant = session.query(
@@ -341,8 +340,8 @@ def editRestaurant(restaurant_id):
 # Delete a restaurant
 @app.route('/restaurant/<int:restaurant_id>/delete/', methods=['GET', 'POST'])
 def deleteRestaurant(restaurant_id):
-    if 'username' not in login_session:
-        return redirect('/login')
+    # if 'username' not in login_session:
+    #     return redirect('/login')
     if user.id != restaurant.user_id:
         return redirect('/login')
     restaurantToDelete = session.query(
@@ -372,8 +371,8 @@ def showMenu(restaurant_id):
 def newMenuItem(restaurant_id):
     if 'username' not in login_session:
         return redirect('/login')
-    if user.id != restaurant.user_id:
-        return redirect('/login')
+    # if user.id != restaurant.user_id:
+    #     return redirect('/login')
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if request.method == 'POST':
         newItem = MenuItem(name=request.form['name'], description=request.form['description'], restaurant_id=restaurant_id, user_id=restaurant.user_id)
@@ -402,10 +401,10 @@ def newMenuItem(restaurant_id):
 
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])
 def editMenuItem(restaurant_id, menu_id):
-    if 'username' not in login_session:
-        return redirect('/login')
-    if user.id != restaurant.user_id:
-        return redirect('/login') #consider updating this to something more graceful
+    # if 'username' not in login_session:
+    #     return redirect('/login')
+    # if user.id != restaurant.user_id:
+    #     return redirect('/login') #consider updating this to something more graceful
     editedItem = session.query(MenuItem).filter_by(id=menu_id).one()
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if request.method == 'POST':
@@ -430,8 +429,8 @@ def editMenuItem(restaurant_id, menu_id):
 def deleteMenuItem(restaurant_id, menu_id):
     if 'username' not in login_session:
         return redirect('/login')
-    if user.id != restaurant.user_id:
-        return redirect('/login')
+    # if user.id != restaurant.user_id:
+    #     return redirect('/login')
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     itemToDelete = session.query(MenuItem).filter_by(id=menu_id).one()
     if request.method == 'POST':
