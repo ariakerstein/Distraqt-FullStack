@@ -294,6 +294,8 @@ def restaurantsJSON():
 @app.route('/')
 @app.route('/restaurant/')
 def showRestaurants():
+    if 'username' not in login_session:
+        return redirect('/welcomeSplash')
     restaurants = session.query(Restaurant).order_by(asc(Restaurant.name))
     return render_template('d_restaurants.html', restaurants=restaurants)
 
