@@ -295,6 +295,8 @@ def restaurantsJSON():
 def showRestaurants():
     if 'username' not in login_session:
         return redirect('/welcomeSplash')
+    # if user.id != restaurant.user_id:
+    #     return redirect('/login')
     restaurants = session.query(Restaurant).order_by(asc(Restaurant.name))
     return render_template('d_restaurants.html', restaurants=restaurants)
 
@@ -344,8 +346,7 @@ def deleteRestaurant(restaurant_id):
     #     return redirect('/login')
     # if user.id != restaurant.user_id:
     #     return redirect('/login')
-    restaurantToDelete = session.query(
-        Restaurant).filter_by(id=restaurant_id).one()
+    restaurantToDelete = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if request.method == 'POST':
         session.delete(restaurantToDelete)
         flash('%s Successfully Deleted' % restaurantToDelete.name)
@@ -369,8 +370,8 @@ def showMenu(restaurant_id):
 # Create a new menu item
 @app.route('/restaurant/<int:restaurant_id>/menu/new/', methods=['GET', 'POST'])
 def newMenuItem(restaurant_id):
-    if 'username' not in login_session:
-        return redirect('/login')
+    # if 'username' not in login_session:
+    #     return redirect('/login')
     # if user.id != restaurant.user_id:
     #     return redirect('/login')
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()

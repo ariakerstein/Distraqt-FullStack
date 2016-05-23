@@ -3,6 +3,10 @@
 <head>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
 	</head>
 <body>
 
@@ -20,8 +24,8 @@
 
       <div class="jumbotron">
         <h1>Distraqt</h1>
-        <p class="lead">Flow to Greatness</p>
-        <p><a class="btn btn-lg btn-success" href="{{url_for('showLogin')}}" role="button">Sign up today</a></p>
+        <p class="lead">Find your flow</p>
+        <p><a class="btn btn-lg btn-success" href="{{url_for('showLogin')}}" role="button">Sign up</a></p>
 <!--         <a class="navbar-brand" href="{{url_for('showLogin')}}">Login&nbsp; -->
       </div>
 
