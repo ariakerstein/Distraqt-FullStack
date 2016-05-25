@@ -294,14 +294,15 @@ def restaurantsJSON():
 @app.route('/')
 @app.route('/restaurant/')
 def showRestaurants():
-    # if 'username' not in login_session:
-    #     return redirect('/welcomeSplash')
+    if 'username' not in login_session:
+        return redirect('/welcomeSplash')
     # if 'user.name' == 'restaurant.user':
     # if username not in restaurant.user_id:
     #     return redirect('/login')
     # if restaurant.user == user.id:
     # if'restaurant.user_id'=='username':
-    restaurants = session.query(Restaurant).order_by(asc(Restaurant.name))
+    restaurants = session.query(Restaurant).join(User).filter_by(Restaurant.User_id=1)
+    # order_by(asc(Restaurant.name))
     return render_template('d_restaurants.html', restaurants=restaurants)
 
 
