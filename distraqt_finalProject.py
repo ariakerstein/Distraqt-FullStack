@@ -299,11 +299,12 @@ def showRestaurants():
     # if 'user.name' == 'restaurant.user':
     # if username not in restaurant.user_id:
     #     return redirect('/login')
-    # if restaurant.user == user.id:
+    # if restaurant.user == user.id:2
     # if'restaurant.user_id'=='username':
-    restaurants = session.query(Restaurant).order_by(asc(Restaurant.name))
-    return render_template('d_restaurants.html', restaurants=restaurants)
-
+    # restaurants = session.query(Restaurant).order_by(asc(Restaurant.name)) #this is the default
+    id = int(login_session['user_id'])
+    restaurants = session.query(Restaurant).filter_by(user_id=id) # how to make this by session?
+    return render_template('d_restaurants.html', restaurants=restaurants, loginPicUrl = login_session['picture'])
 
 #(1) test route 
 @app.route('/welcomeSplash')
