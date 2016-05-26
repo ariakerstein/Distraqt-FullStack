@@ -325,7 +325,7 @@ def newRestaurant():
         session.commit()
         return redirect(url_for('showRestaurants'))
     else:
-        return render_template('d_newRestaurant.html')
+        return render_template('d_newRestaurant.html', loginPicUrl = login_session['picture'])
 
 @app.route('/restaurant/<int:restaurant_id>/edit/', methods=['GET', 'POST'])
 def editRestaurant(restaurant_id):
@@ -387,7 +387,7 @@ def newMenuItem(restaurant_id):
         flash('New Menu %s Item Successfully Created' % (newItem.name))
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
     else:
-        return render_template('d_newmenuitem.html', restaurant_id=restaurant_id)
+        return render_template('d_newmenuitem.html', restaurant_id=restaurant_id, loginPicUrl = login_session['picture'])
 
 # # Edit a menu item
 # @app.route('/distraqted')
