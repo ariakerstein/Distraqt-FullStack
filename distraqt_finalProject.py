@@ -244,7 +244,7 @@ def gdisconnect():
             json.dumps('Current user not connected.'), 401)
         response.headers['Content-Type'] = 'application/json'
         # return response
-        return redirect('/welcomeSplash') #redirect customer to the welcome splash on logout
+        return redirect('/welcome') #redirect customer to the welcome splash on logout
     access_token = login_session.get('credentials')
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
     h = httplib2.Http()
