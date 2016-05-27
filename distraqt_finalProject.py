@@ -293,7 +293,7 @@ def restaurantsJSON():
 # Show all restaurants
 @app.route('/')
 @app.route('/distraqt/')
-@app.route('/restaurant/')
+# @app.route('/restaurant/')
 def showRestaurants():
     if 'username' not in login_session:
         return redirect('/welcome')
@@ -342,7 +342,7 @@ def editRestaurant(restaurant_id):
             flash('Restaurant Successfully Edited %s' % editedRestaurant.name)
             return redirect(url_for('showRestaurants'))
     else:
-        return render_template('d_editRestaurant.html', restaurant=editedRestaurant)
+        return render_template('d_editRestaurant.html', restaurant=editedRestaurant, loginPicUrl = login_session['picture'])
 
 
 # Delete a restaurant
