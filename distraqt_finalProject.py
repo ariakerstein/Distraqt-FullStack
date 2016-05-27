@@ -292,10 +292,10 @@ def restaurantsJSON():
 
 # Show all restaurants
 @app.route('/')
-@app.route('/restaurant/')
+@app.route('/distraqt/')
 def showRestaurants():
     if 'username' not in login_session:
-        return redirect('/welcomeSplash')
+        return redirect('/welcome')
     # if 'user.name' == 'restaurant.user':
     # if username not in restaurant.user_id:
     #     return redirect('/login')
@@ -307,13 +307,13 @@ def showRestaurants():
     return render_template('d_restaurants.html', restaurants=restaurants, loginPicUrl = login_session['picture'])
 
 #(1) test route 
-@app.route('/welcomeSplash')
+@app.route('/welcome')
 def distraqt():
     return render_template('d_splash.html')
 
 
 # Create a new restaurant
-@app.route('/restaurant/new/', methods=['GET', 'POST'])
+@app.route('/distraqt/new/', methods=['GET', 'POST'])
 def newRestaurant():
     # if 'username' not in login_session:
     #     return redirect('/welcomeSplash')
@@ -327,7 +327,7 @@ def newRestaurant():
     else:
         return render_template('d_newRestaurant.html', loginPicUrl = login_session['picture'])
 
-@app.route('/restaurant/<int:restaurant_id>/edit/', methods=['GET', 'POST'])
+@app.route('/distraqt/<int:restaurant_id>/edit/', methods=['GET', 'POST'])
 def editRestaurant(restaurant_id):
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -345,7 +345,7 @@ def editRestaurant(restaurant_id):
 
 
 # Delete a restaurant
-@app.route('/restaurant/<int:restaurant_id>/delete/', methods=['GET', 'POST'])
+@app.route('/distraqt/<int:restaurant_id>/delete/', methods=['GET', 'POST'])
 def deleteRestaurant(restaurant_id):
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -363,8 +363,8 @@ def deleteRestaurant(restaurant_id):
 # Show a restaurant menu
 
 
-@app.route('/restaurant/<int:restaurant_id>/')
-@app.route('/restaurant/<int:restaurant_id>/menu/')
+@app.route('/distraqt/<int:restaurant_id>/')
+@app.route('/distraqt/<int:restaurant_id>/flowBlocks/')
 def showMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(
@@ -373,7 +373,7 @@ def showMenu(restaurant_id):
 
 
 # Create a new menu item
-@app.route('/restaurant/<int:restaurant_id>/menu/new/', methods=['GET', 'POST'])
+@app.route('/distraqt/<int:restaurant_id>/flowBlock/new/', methods=['GET', 'POST'])
 def newMenuItem(restaurant_id):
     # if 'username' not in login_session:
     #     return redirect('/login')
