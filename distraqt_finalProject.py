@@ -354,6 +354,7 @@ def deleteRestaurant(restaurant_id):
     #     return redirect('/login')
     restaurantToDelete = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if request.method == 'POST':
+        # if request.form['name']:
         session.delete(restaurantToDelete)
         flash('%s Successfully Deleted' % restaurantToDelete.name)
         session.commit()
