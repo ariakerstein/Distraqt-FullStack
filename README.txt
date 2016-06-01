@@ -1,8 +1,18 @@
-Distraqt Final Project:
+Distraqt Final Project overview:
 -----------------------
 
-This project is based on Udacity's full stack nanodegree.
-There are two versions - one for the restaurant menu app and one for the final project, called 'Distraqt'. The files prefixed with the convention 'd_*' or 'distraqt_*' indicate they are part of the Distraqt final project. Admittedly this is not the most intuitive way to organize this - when time permits this repo will be restructured and the README will reflect those updates. 
+This project is based on Udacity's full stack nanodegree building a fully functional webapp containing the following functionality:
+* CRUD functiaonlity 
+* Working database 
+* Deployed to Heroku
+* using Google authorization
+* JSON endpoints
+* Styled using Twitter bootstrap
+
+There are two versions - one for the restaurant menu app and one for the final project, called 'Distraqt'. 
+The 'static' folder contains
+The Distraqt project files generally mirror the final project files though prefixed with the convention 'd_*' or 'distraqt_*'.
+Admittedly this is not the most intuitive way to organize this - when time permits this repo will be restructured and the README will reflect those updates. 
 
 
 Running the Final Project:
