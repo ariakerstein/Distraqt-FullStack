@@ -354,7 +354,6 @@ def deleteRestaurant(restaurant_id):
     #     return redirect('/login')
     restaurantToDelete = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if request.method == 'POST':
-        # if request.form['name']:
         session.delete(restaurantToDelete)
         flash('%s Successfully Deleted' % restaurantToDelete.name)
         session.commit()
@@ -368,7 +367,7 @@ def showMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(
         restaurant_id=restaurant_id).all()
-    return render_template('d_menu.html', items=items, restaurant=restaurant)
+    return render_template('d_menu.html', items=items, restaurant=restaurant, loginPicUrl = login_session['picture'])
 
 
 # Create a new menu item
@@ -443,7 +442,7 @@ def deleteMenuItem(restaurant_id, menu_id):
         flash('Menu Item Successfully Deleted')
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
     else:
-        return render_template('d_deleteMenuItem.html', item=itemToDelete)
+        return render_template('d_deleteMenuItem.html', item=itemToDelete, loginPicUrl = login_session['picture'])
 
 
 

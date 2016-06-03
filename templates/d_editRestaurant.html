@@ -2,12 +2,45 @@
 
 
 <head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
 	</head>
 
 <body>
 
-<h1> Edit Restaurant (Category) </h1>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{url_for('showRestaurants')}}">Distraqt </a>
+<!--       <a class="navbar-brand" href="#">Weekly Planner
+      <a class="navbar-brand" href="#">Blog -->
+      {% if 'username' in login_session %}
+      <a class="navbar-brand" href="{{url_for('showLogin')}}">Login&nbsp; </a>
+      {% endif %} 
+
+      {% if 'username' not in login_session %}
+
+      <a class="navbar-brand" href="{{url_for('gdisconnect')}}">Logout&nbsp; </a>
+      {% endif %} 
+
+      {% if loginPicUrl %} 
+      <img class="navbar-brand" src="{{loginPicUrl}}" />
+      {% endif %} 
+<!--       <a class="navbar-brand" href="#">New Block -->
+<!--         <img alt="Brand" src="..."> -->
+      </a>
+    </div>
+  </div>
+</nav>
+
+<h1> Edit Category </h1>
 
 
 <form action="{{ url_for('editRestaurant',restaurant_id = restaurant.id)}}" method = 'post'>
