@@ -360,7 +360,7 @@ def deleteRestaurant(restaurant_id):
         session.commit()
         return redirect(url_for('showRestaurants', restaurant_id=restaurant_id))
     else:
-        return render_template('d_deleteRestaurant.html', restaurant=restaurantToDelete)
+        return render_template('d_deleteRestaurant.html', restaurant=restaurantToDelete, loginPicUrl = login_session['picture'])
 
 @app.route('/distraqt/<int:restaurant_id>/')
 @app.route('/distraqt/<int:restaurant_id>/flowBlocks/')
@@ -425,7 +425,7 @@ def editMenuItem(restaurant_id, menu_id):
         flash('Menu Item Successfully Edited')
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
     else:
-        return render_template('d_editmenuitem.html', restaurant_id=restaurant_id, menu_id=menu_id, item=editedItem)
+        return render_template('d_editmenuitem.html', restaurant_id=restaurant_id, menu_id=menu_id, item=editedItem, loginPicUrl = login_session['picture'])
 
 
 # Delete a menu item

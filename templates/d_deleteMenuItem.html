@@ -17,8 +17,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="{{url_for('showRestaurants')}}">Distraqt </a>
-<!--       <a class="navbar-brand" href="#">Weekly Planner
-      <a class="navbar-brand" href="#">Blog -->
+
       {% if 'username' in login_session %}
       <a class="navbar-brand" href="{{url_for('showLogin')}}">Login&nbsp; </a>
       {% endif %} 
@@ -31,8 +30,7 @@
       {% if loginPicUrl %} 
       <img class="navbar-brand" src="{{loginPicUrl}}" />
       {% endif %} 
-<!--       <a class="navbar-brand" href="#">New Block -->
-<!--         <img alt="Brand" src="..."> -->
+
       </a>
     </div>
   </div>
@@ -46,7 +44,7 @@
 
 </form>
 
-<!-- <a href = '{{url_for('restaurantMenu', restaurant_id = item.restaurant_id)}}'> Cancel </a> -->
+
 <a href = '{{url_for('showRestaurants')}}'> Cancel </a>
 </body>
 
