@@ -362,9 +362,6 @@ def deleteRestaurant(restaurant_id):
     else:
         return render_template('d_deleteRestaurant.html', restaurant=restaurantToDelete)
 
-# Show a restaurant menu
-
-
 @app.route('/distraqt/<int:restaurant_id>/')
 @app.route('/distraqt/<int:restaurant_id>/flowBlocks/')
 def showMenu(restaurant_id):
@@ -406,7 +403,6 @@ def newMenuItem(restaurant_id):
 
 #     return output
 
-
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])
 def editMenuItem(restaurant_id, menu_id):
     # if 'username' not in login_session:
@@ -418,12 +414,12 @@ def editMenuItem(restaurant_id, menu_id):
     if request.method == 'POST':
         if request.form['name']:
             editedItem.name = request.form['name']
-        if request.form['description']:
-            editedItem.description = request.form['description']
-        if request.form['price']:
-            editedItem.price = request.form['price']
-        if request.form['course']:
-            editedItem.course = request.form['course']
+        # if request.form['description']:
+        #     editedItem.description = request.form['description']
+        # if request.form['price']:
+        #     editedItem.price = request.form['price']
+        # if request.form['course']:
+        #     editedItem.course = request.form['course']
         session.add(editedItem)
         session.commit()
         flash('Menu Item Successfully Edited')
@@ -439,7 +435,7 @@ def deleteMenuItem(restaurant_id, menu_id):
     #     return redirect('/login')
     # if user.id != restaurant.user_id:
     #     return redirect('/login')
-    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    # restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     itemToDelete = session.query(MenuItem).filter_by(id=menu_id).one()
     if request.method == 'POST':
         session.delete(itemToDelete)
@@ -448,6 +444,7 @@ def deleteMenuItem(restaurant_id, menu_id):
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
     else:
         return render_template('d_deleteMenuItem.html', item=itemToDelete)
+
 
 
 if __name__ == '__main__':
