@@ -67,7 +67,10 @@ function signInCallback(authResult) {
 
 <!--END GOOGLE PLUS SIGN IN -->
 
+<!--#####################################FACEBOOK AUTH IS NOT WORKING AND HENCE THE BUTTON IS SUPPRESSED #################  -->
+
 <!--FACEBOOK SIGN IN -->
+
 <script>
   window.fbAsyncInit = function() {
   FB.init({
@@ -117,8 +120,8 @@ function signInCallback(authResult) {
   }
 </script>
 
-
-<button>
+<!-- SUPPRESS FB BUTTON BELOW UNTIL AUTH IS WORKING -->
+<!-- <button>
          
 
           <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
@@ -127,7 +130,7 @@ function signInCallback(authResult) {
 </fb:login-button>
 
 
-        </button>
+        </button> -->
 <!--END FACEBOOK SIGN IN -->
 
   </body>
