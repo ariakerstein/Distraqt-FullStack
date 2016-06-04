@@ -51,14 +51,14 @@ http://0.0.0.0:33507/
 
 Or you can run this via heroku local web
 
->>> heroku local web
+$ heroku local web
 you should see the server running, returning something like:
 9:32:59 PM web.1 |   * Running on http://0.0.0.0:5000/
 9:32:59 PM web.1 |   * Restarting with reloader
 
-4. from here you should be able to navigate to the app in your browser at e.g., http://0.0.0.0:5000/
+4. from here you can navigate to the app in your browser at e.g., http://0.0.0.0:5000/
 
-5. You should land on */welcome, e.g., http://0.0.0.0:5000/welcome. 
+5. You will land on */welcome, e.g., http://0.0.0.0:5000/welcome. 
 
 6. Testing the functionality; 
 -- Click the signup button to authenticate with google. 
@@ -73,13 +73,9 @@ Additional notes:
 -- all data is pushed to a postgres db, in distraqt_database_setup.py
 -- JSON endpoints available via */JSON. Note that all routes are described in distraqt_finalProject.py
 e.g., '/distraqt/<int:restaurant_id>/menu/<int:menu_id>/JSON'
-e.g., '/distraqt/JSON''
 -- FB authorization is currently deprecated in favor of Google
 -- All pages are currently private by user; unauthenticated users will only have access to the welcome page
 -- form submission occurs for both restaurant and item creation, edit/update, delete
 -- Navbar has logic to shwo login/logout functionality dependent on users auth status. Navbar returns google profile picture.
 
 
-=======
-4. from here you should be able to navigate to the app. 
->>>>>>> 88657a0b40177bd0b7ec3cea2850a4650f21f41c

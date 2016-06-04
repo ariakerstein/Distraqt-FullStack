@@ -1,6 +1,4 @@
 
-
-
 var timer;
 
 $(document).ready(function(){
