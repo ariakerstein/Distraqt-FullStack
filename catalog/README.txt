@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Distraqt Final Project:
 -----------------------
 
@@ -11,36 +10,15 @@ This follows a pretty standard Flask app setup:
 - static: contains images, CSS, Fonts and JS
   -- JS folder contains scripts.js. Timer functionality contained here (definitely NOT part of the project requirements)
 - archive: contains the original final project files from the course. these files have been modified, permutated for the final project submission and hence have been moved to the archive dustbin, as noted above.
-=======
-Distraqt Final Project overview:
------------------------
-
-This project is based on Udacity's full stack nanodegree building a fully functional webapp containing the following functionality:
-* CRUD functiaonlity 
-* Working database 
-* Deployed to Heroku
-* using Google authorization
-* JSON endpoints
-* Styled using Twitter bootstrap
-
-There are two versions - one for the restaurant menu app and one for the final project, called 'Distraqt'. 
-The 'static' folder contains
-The Distraqt project files generally mirror the final project files though prefixed with the convention 'd_*' or 'distraqt_*'.
-Admittedly this is not the most intuitive way to organize this - when time permits this repo will be restructured and the README will reflect those updates. 
->>>>>>> 88657a0b40177bd0b7ec3cea2850a4650f21f41c
 
 
 Running the Final Project:
 ---------------------------
-<<<<<<< HEAD
 0. Clone the repo
 
 1. Run vagrant and navigate to the relevant folder (assuming this is already configured for purposes of this file):
 >>> vagrant up
 >>> vagrant ssh
-=======
-1. Clone the repo
->>>>>>> 88657a0b40177bd0b7ec3cea2850a4650f21f41c
 
 2. (optional) run the file 'lotsOfDistraqt.py' to generate mock data
 navigate to the directory named 'catalog'
@@ -50,17 +28,12 @@ navigate to the directory named 'catalog'
 >>> python distraqt_finalProject.py
 you should see the server running, returning something like:
 http://0.0.0.0:33507/
-<<<<<<< HEAD
 Or you can run this via heroku local web if you have that configured
-=======
-Or you can run this via heroku local web
->>>>>>> 88657a0b40177bd0b7ec3cea2850a4650f21f41c
 >>> heroku local web
 you should see the server running, returning something like:
 9:32:59 PM web.1 |   * Running on http://0.0.0.0:5000/
 9:32:59 PM web.1 |   * Restarting with reloader
 
-<<<<<<< HEAD
 4. from here you should be able to navigate to the app in your browser at e.g., http://0.0.0.0:5000/
 
 5. You should land on */welcome, e.g., http://0.0.0.0:5000/welcome. 
@@ -85,6 +58,3 @@ e.g., '/distraqt/JSON''
 -- Navbar has logic to shwo login/logout functionality dependent on users auth status. Navbar returns google profile picture.
 
 
-=======
-4. from here you should be able to navigate to the app. 
->>>>>>> 88657a0b40177bd0b7ec3cea2850a4650f21f41c
