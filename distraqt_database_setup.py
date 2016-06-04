@@ -5,9 +5,6 @@ from sqlalchemy import create_engine
 import datetime
 
 Base = declarative_base()
-# last_time = Column(TIMESTAMP, server_default=func.now(), onupdate=func.current_timestamp())
-
-# class sqlalchemy.types.TIMESTAMP(timezone=False)
 
 class User(Base):
     __tablename__ = 'user'
@@ -36,7 +33,6 @@ class Restaurant(Base):
             'id': self.id,
         }
 
-
 class MenuItem(Base):
     __tablename__ = 'menu_item'
 
@@ -62,12 +58,8 @@ class MenuItem(Base):
             'price': self.price,
             'course': self.course,
         }
-
+#### Note that initial db functionality was setup using sqlite -- this has been deprecated in favor of using postgres ######
 # engine = create_engine('sqlite:///distraqtJan5.db')
-# engine = create_engine('sqlite:///distraqtDecember27.db')
-# engine = create_engine('sqlite:///distraqtDecember27.db')
-# engine = create_engine('sqlite:///distraqtFeb25.db')
 engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
-
 
 Base.metadata.create_all(engine)
