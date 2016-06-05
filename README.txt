@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 Distraqt Final Project:
 -----------------------
 
@@ -17,18 +17,24 @@ Distraqt Final Project overview:
 ---------------------------------
 
 This project is based on Udacity's full stack nanodegree building a fully functional webapp containing the following functionality:
-* CRUD functiaonlity 
-* Working database 
+* CRUD functionality exists for both restaurant and item creation levels
+* Working postgres database 
 * Deployed to Heroku
-* using Google authorization
+* Google authorization (FB authorization is currently deprecated)
 * JSON endpoints
+* all data is pushed to a postgres db, tables described in 'distraqt_database_setup.py'
+* JSON endpoints available via */JSON. Routes are described in 'distraqt_finalProject.py'
+e.g., '/distraqt/<int:restaurant_id>/menu/<int:menu_id>/JSON'
+* All pages are currently private by user; unauthenticated users will only have access to the welcome page
+* Navbar has logic to show login/logout functionality dependent on users auth status. Navbar returns google profile picture.
 * Styled using Twitter bootstrap
+* JS countdown timer with form submission logic
 
 The Distraqt project files generally mirror the final project files though prefixed with the convention 'd_*' or 'distraqt_*'.
 
 
 Running the Final Project App:
----------------------------
+-------------------------------
 
 0. Clone the repo:
 $ git clone https://github.com/ariakerstein/RestaurantMenu.git
@@ -69,14 +75,5 @@ Functionality supported:
 -- save it enter a time in the timer and use the create button (you'll need to pause)
 -- Edit/delete functionality exists both at the category and at the item level.
 
-Additional notes:
--------------------
--- all data is pushed to a postgres db, in distraqt_database_setup.py
--- JSON endpoints available via */JSON. Note that all routes are described in distraqt_finalProject.py
-e.g., '/distraqt/<int:restaurant_id>/menu/<int:menu_id>/JSON'
--- FB authorization is currently deprecated
--- All pages are currently private by user; unauthenticated users will only have access to the welcome page
--- CRUD functionality exists for both restaurant and item creation levels
--- Navbar has logic to show login/logout functionality dependent on users auth status. Navbar returns google profile picture.
 
 

@@ -22,11 +22,14 @@ CLIENT_ID = json.loads(
     open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Restaurant Menu Application"
 
+### Deprecated sqlite dbs used for testing: ###
 # Connect to Database and create database session
 # engine = create_engine('sqlite:///distraqtJan5.db')
 # engine = create_engine('sqlite:///distraqtDecember27.db')
 # engine = create_engine('sqlite:///distraqtDecember27.db')
 # engine = create_engine('sqlite:///distraqtFeb25.db')
+
+### Create postgres db with the following name ###
 engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
 
 Base.metadata.bind = engine
@@ -34,7 +37,7 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-# Create anti-forgery state token
+### Create anti-forgery state token ###
 @app.route('/login')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
@@ -43,7 +46,7 @@ def showLogin():
     # return "The current session state is %s" % login_session['state']
     return render_template('login.html', STATE=state)
 
-# Note: deprecated FB auth
+### Note: deprecated FB auth code below ###
 # @app.route('/fbconnect', methods=['POST'])
 # def fbconnect():
 #     if request.args.get('state') != login_session['state']:
@@ -109,7 +112,7 @@ def showLogin():
 #     flash("Now logged in as %s" % login_session['username'])
 #     return output
 
-# Note: deprecated FB auth
+### Note: deprecated FB auth ###
 # @app.route('/fbdisconnect')
 # def fbdisconnect():
 #     facebook_id = login_session['facebook_id']
@@ -284,17 +287,16 @@ def menuItemJSON(restaurant_id, menu_id):
     Menu_Item = session.query(MenuItem).filter_by(id=menu_id).one()
     return jsonify(Menu_Item=Menu_Item.serialize)
 
-
-@app.route('/distraqt/JSON')
-def restaurantsJSON():
-    restaurants = session.query(Restaurant).all()
-    return jsonify(restaurants=[r.serialize for r in restaurants])
+### Deprecated test route - not in use ###
+# @app.route('/distraqt/JSON')
+# def restaurantsJSON():
+#     restaurants = session.query(Restaurant).all()
+#     return jsonify(restaurants=[r.serialize for r in restaurants])
 
 
 # Show all restaurants
 @app.route('/')
 @app.route('/distraqt/')
-# @app.route('/restaurant/')
 def showRestaurants():
     if 'username' not in login_session:
         return redirect('/welcome')
@@ -304,7 +306,7 @@ def showRestaurants():
     #     return redirect('/login')
     # if restaurant.user == user.id:2
     # if'restaurant.user_id'=='username':
-    # restaurants = session.query(Restaurant).order_by(asc(Restaurant.name)) #this is the default
+    # restaurants = session.query(Restaurant).order_by(asc(Restaurant.name)) #this is the default, since updated
     id = int(login_session['user_id'])
     restaurants = session.query(Restaurant).filter_by(user_id=id) # how to make this by session?
     return render_template('d_restaurants.html', restaurants=restaurants, loginPicUrl = login_session['picture'])
@@ -317,6 +319,7 @@ def distraqt():
 
 # Create a new restaurant
 @app.route('/distraqt/new/', methods=['GET', 'POST'])
+'''leverage restaurant paradigm to create a new category'''
 def newRestaurant():
     if request.method == 'POST':
         newRestaurant = Restaurant(
@@ -330,6 +333,7 @@ def newRestaurant():
 
 @app.route('/distraqt/<int:restaurant_id>/edit/', methods=['GET', 'POST'])
 def editRestaurant(restaurant_id):
+    '''leverage restaurant paradigm to edit the category'''
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -349,6 +353,7 @@ def editRestaurant(restaurant_id):
 # Delete a restaurant
 @app.route('/distraqt/<int:restaurant_id>/delete/', methods=['GET', 'POST'])
 def deleteRestaurant(restaurant_id):
+    '''leverage restaurant paradigm to delete the category'''
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -365,6 +370,7 @@ def deleteRestaurant(restaurant_id):
 
 @app.route('/distraqt/<int:restaurant_id>/')
 @app.route('/distraqt/<int:restaurant_id>/flowBlocks/')
+    '''leverage restaurant/menu paradigm to show all items in a particular category'''
 def showMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(
@@ -375,6 +381,7 @@ def showMenu(restaurant_id):
 # Create a new menu item
 @app.route('/distraqt/<int:restaurant_id>/flowBlock/new/', methods=['GET', 'POST'])
 def newMenuItem(restaurant_id):
+    '''leverage restaurant/menu paradigm to create a new item in a particular category'''
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -393,6 +400,7 @@ def newMenuItem(restaurant_id):
 
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])
 def editMenuItem(restaurant_id, menu_id):
+    '''leverage restaurant/menu paradigm to edit an item in a particular category'''
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -420,6 +428,7 @@ def editMenuItem(restaurant_id, menu_id):
 # Delete a menu item
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete', methods=['GET', 'POST'])
 def deleteMenuItem(restaurant_id, menu_id):
+    '''leverage restaurant/menu paradigm to delete an item in a particular category'''
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
     # if 'username' not in login_session:
     #     return redirect('/login')
