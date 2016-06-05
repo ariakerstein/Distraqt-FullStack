@@ -298,6 +298,7 @@ def menuItemJSON(restaurant_id, menu_id):
 @app.route('/')
 @app.route('/distraqt/')
 def showRestaurants():
+    """Show all categories"""
     if 'username' not in login_session:
         return redirect('/welcome')
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
@@ -314,13 +315,14 @@ def showRestaurants():
 #(1) test route 
 @app.route('/welcome')
 def distraqt():
+    """render the welcome template"""
     return render_template('d_splash.html')
 
 
 # Create a new restaurant
 @app.route('/distraqt/new/', methods=['GET', 'POST'])
-'''leverage restaurant paradigm to create a new category'''
 def newRestaurant():
+    """leverage restaurant paradigm to create a new category"""
     if request.method == 'POST':
         newRestaurant = Restaurant(
             name=request.form['name'], user_id=login_session['user_id'])
@@ -333,7 +335,7 @@ def newRestaurant():
 
 @app.route('/distraqt/<int:restaurant_id>/edit/', methods=['GET', 'POST'])
 def editRestaurant(restaurant_id):
-    '''leverage restaurant paradigm to edit the category'''
+    """leverage restaurant paradigm to edit the category"""
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -353,7 +355,7 @@ def editRestaurant(restaurant_id):
 # Delete a restaurant
 @app.route('/distraqt/<int:restaurant_id>/delete/', methods=['GET', 'POST'])
 def deleteRestaurant(restaurant_id):
-    '''leverage restaurant paradigm to delete the category'''
+    """leverage restaurant paradigm to delete the category"""
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -370,8 +372,8 @@ def deleteRestaurant(restaurant_id):
 
 @app.route('/distraqt/<int:restaurant_id>/')
 @app.route('/distraqt/<int:restaurant_id>/flowBlocks/')
-    '''leverage restaurant/menu paradigm to show all items in a particular category'''
 def showMenu(restaurant_id):
+    """leverage restaurant/menu paradigm to show all items in a particular category"""
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(
         restaurant_id=restaurant_id).all()
@@ -381,7 +383,7 @@ def showMenu(restaurant_id):
 # Create a new menu item
 @app.route('/distraqt/<int:restaurant_id>/flowBlock/new/', methods=['GET', 'POST'])
 def newMenuItem(restaurant_id):
-    '''leverage restaurant/menu paradigm to create a new item in a particular category'''
+    """leverage restaurant/menu paradigm to create a new item in a particular category"""
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -400,7 +402,7 @@ def newMenuItem(restaurant_id):
 
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])
 def editMenuItem(restaurant_id, menu_id):
-    '''leverage restaurant/menu paradigm to edit an item in a particular category'''
+    """leverage restaurant/menu paradigm to edit an item in a particular category"""
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -428,7 +430,7 @@ def editMenuItem(restaurant_id, menu_id):
 # Delete a menu item
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete', methods=['GET', 'POST'])
 def deleteMenuItem(restaurant_id, menu_id):
-    '''leverage restaurant/menu paradigm to delete an item in a particular category'''
+    """leverage restaurant/menu paradigm to delete an item in a particular category"""
     ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
     # if 'username' not in login_session:
     #     return redirect('/login')
