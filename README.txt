@@ -37,7 +37,7 @@ Running the Final Project App:
 -------------------------------
 
 0. Clone the repo:
-$ git clone https://github.com/ariakerstein/RestaurantMenu.git
+$ git clone https://github.com/ariakerstein/Distraqt-FullStack.git
 
 1. Run vagrant and navigate to the relevant folder (assuming this is already configured for purposes of this file):
 >>> vagrant up
