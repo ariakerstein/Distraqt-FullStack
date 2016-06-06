@@ -1,4 +1,5 @@
 
+
 var timer;
 
 $(document).ready(function(){
@@ -197,4 +198,3 @@ function startTimer() {
             }
          document.getElementById("result").innerHTML = "Current block: " + input;
         }
-
