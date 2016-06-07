@@ -6,6 +6,7 @@ import datetime
 
 Base = declarative_base()
 
+# User table
 class User(Base):
     __tablename__ = 'user'
 
@@ -15,6 +16,7 @@ class User(Base):
     picture = Column(String(250))
     created_date = Column(DateTime, default=datetime.datetime.utcnow)
 
+# Restaurant table is equivalent to category in the app
 class Restaurant(Base):
     __tablename__ = 'restaurant'
 
@@ -33,6 +35,7 @@ class Restaurant(Base):
             'id': self.id,
         }
 
+# menu table is equivalent to item in the app
 class MenuItem(Base):
     __tablename__ = 'menu_item'
 
@@ -58,8 +61,12 @@ class MenuItem(Base):
             'price': self.price,
             'course': self.course,
         }
-#### Note that initial db functionality was setup using sqlite -- this has been deprecated in favor of using postgres ######
-# engine = create_engine('sqlite:///distraqtJan5.db')
-engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
+
+#reinstate sqlite for final project review purposes:
+engine = create_engine('sqlite:///distraqtJun6.db')
+
+### commented out postgres db - still functional
+### Note that initial db functionality was setup using sqlite -- this has been deprecated in favor of using postgres ######
+# engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
 
 Base.metadata.create_all(engine)

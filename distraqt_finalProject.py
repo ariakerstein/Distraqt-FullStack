@@ -22,6 +22,9 @@ CLIENT_ID = json.loads(
     open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Restaurant Menu Application"
 
+
+# reinstate sqlite for final project review purposes:
+engine = create_engine('sqlite:///distraqtJun6.db')
 ### Deprecated sqlite dbs used for testing: ###
 # Connect to Database and create database session
 # engine = create_engine('sqlite:///distraqtJan5.db')
@@ -29,8 +32,9 @@ APPLICATION_NAME = "Restaurant Menu Application"
 # engine = create_engine('sqlite:///distraqtDecember27.db')
 # engine = create_engine('sqlite:///distraqtFeb25.db')
 
+# functional postgres db - commented out for final project submission purposes
 ### Create postgres db with the following name ###
-engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
+# engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
 
 Base.metadata.bind = engine
 
@@ -287,7 +291,7 @@ def menuItemJSON(restaurant_id, menu_id):
     Menu_Item = session.query(MenuItem).filter_by(id=menu_id).one()
     return jsonify(Menu_Item=Menu_Item.serialize)
 
-### Deprecated test route - not in use ###
+### Deprecated test route - not needed ###
 # @app.route('/distraqt/JSON')
 # def restaurantsJSON():
 #     restaurants = session.query(Restaurant).all()

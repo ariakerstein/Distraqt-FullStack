@@ -1,8 +1,8 @@
-Item Catalog Final Project for full stack nanodegree (project 3), additional notes:
------------------------------------------------------------------------------
+Item Catalog Final Project (called distraqt) for full stack nanodegree:
+-----------------------------------------------------------------------
 
 This project is based on Udacity's full stack nanodegree building a fully functional webapp containing the following functionality:
-* CRUD functionality exists for both restaurant and item creation levels
+* CRUD functionality
 * Working postgres database 
 * Deployed to Heroku
 * Google authorization (FB authorization is currently deprecated)
