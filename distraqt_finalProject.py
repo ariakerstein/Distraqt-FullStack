@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
+from flask import (
+    Flask, render_template, request, redirect, jsonify, url_for, flash)
 import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy import xrange
+from functools import wraps
 
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
@@ -29,15 +31,19 @@ APPLICATION_NAME = "Restaurant Menu Application"
 engine = create_engine('sqlite:///distraqtJun6.db')
 
 # functional postgres db - commented out for final project submission purposes
-### Create postgres db with the following name ###
-# engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
+# Create postgres db with the following name #
+# engine = create_engine(
+# postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.
+# compute-1.amazonaws.com:5432/dif8vbb8o8q66')
 
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-### Create anti-forgery state token ###
+# Create anti-forgery state token #
+
+
 @app.route('/login')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
@@ -98,11 +104,11 @@ def gconnect():
     stored_credentials = login_session.get('access_token')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_credentials is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
+        response = make_response(json.dumps
+                                 ('Current user is already connected.'),
                                  200)
         response.headers['Content-Type'] = 'application/json'
         return response
-
 
     # Store the access token in the session for later use.
     login_session['access_token'] = credentials.access_token
@@ -138,6 +144,7 @@ def gconnect():
 
 # User Helper Functions
 
+
 def createUser(login_session):
     newUser = User(name=login_session['username'], email=login_session[
                    'email'], picture=login_session['picture'])
@@ -170,7 +177,8 @@ def gdisconnect():
             json.dumps('Current user not connected.'), 401)
         response.headers['Content-Type'] = 'application/json'
         # return response
-        return redirect('/welcome') #redirect customer to the welcome splash on logout
+        # redirect customer to the welcome splash on logout
+        return redirect('/welcome')
     access_token = login_session.get('credentials')
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
     h = httplib2.Http()
@@ -195,8 +203,20 @@ def gdisconnect():
         return response
 
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' in login_session:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('login', next=request.url))
+    return decorated_function
+
 # JSON APIs to view Restaurant Information
+
+
 @app.route('/distraqt/<int:restaurant_id>/menu/JSON')
+@login_required
 def restaurantMenuJSON(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(
@@ -204,37 +224,50 @@ def restaurantMenuJSON(restaurant_id):
     return jsonify(MenuItems=[i.serialize for i in items])
 
 # JSON APIs to view item Information
+
+
 @app.route('/distraqt/<int:restaurant_id>/menu/<int:menu_id>/JSON')
+@login_required
 def menuItemJSON(restaurant_id, menu_id):
     Menu_Item = session.query(MenuItem).filter_by(id=menu_id).one()
     return jsonify(Menu_Item=Menu_Item.serialize)
 
-### Deprecated test route - not needed ###
+# Deprecated test route - not needed #
 # @app.route('/distraqt/JSON')
+# @login_required
 # def restaurantsJSON():
 #     restaurants = session.query(Restaurant).all()
 #     return jsonify(restaurants=[r.serialize for r in restaurants])
 
+# create a function decorator to address auth security issues
 
 # Show all restaurants
+
+
 @app.route('/')
 @app.route('/distraqt/')
 def showRestaurants():
     """Show all categories"""
     if 'username' not in login_session:
         return redirect('/welcome')
-    ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
+# OLD LOGIC FOR USER AUTHENTICATION - 
+    # keeping for possible future use #
     # if 'user.name' == 'restaurant.user':
     # if username not in restaurant.user_id:
     #     return redirect('/login')
     # if restaurant.user == user.id:2
     # if'restaurant.user_id'=='username':
-    # restaurants = session.query(Restaurant).order_by(asc(Restaurant.name)) #this is the default, since updated
+    # restaurants = session.query(Restaurant).order_by
+    #(asc(Restaurant.name))
+    # #this is the default, since updated
     id = int(login_session['user_id'])
-    restaurants = session.query(Restaurant).filter_by(user_id=id) # how to make this by session?
-    return render_template('d_restaurants.html', restaurants=restaurants, loginPicUrl = login_session['picture'])
+    restaurants = session.query(Restaurant).filter_by(
+        user_id=id)  # how to make this by session?
+    return render_template('d_restaurants.html',
+                           restaurants=restaurants,
+                           loginPicUrl=login_session['picture'])
 
-#(1) test route 
+
 @app.route('/welcome')
 def distraqt():
     """render the welcome template"""
@@ -243,22 +276,27 @@ def distraqt():
 
 # Create a new restaurant
 @app.route('/distraqt/new/', methods=['GET', 'POST'])
+@login_required
 def newRestaurant():
     """leverage restaurant paradigm to create a new category"""
     if request.method == 'POST':
         newRestaurant = Restaurant(
-            name=request.form['name'], user_id=login_session['user_id'])
+            name=request.form['name'],
+            user_id=login_session['user_id'])
         session.add(newRestaurant)
         flash('New Restaurant %s Successfully Created' % newRestaurant.name)
         session.commit()
         return redirect(url_for('showRestaurants'))
     else:
-        return render_template('d_newRestaurant.html', loginPicUrl = login_session['picture'])
+        return render_template('d_newRestaurant.html',
+                               loginPicUrl=login_session['picture'])
 
 @app.route('/distraqt/<int:restaurant_id>/edit/', methods=['GET', 'POST'])
+@login_required
 def editRestaurant(restaurant_id):
     """leverage restaurant paradigm to edit the category"""
-    ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
+    # OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP -
+    #keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
     # if user.id != restaurant.user_id:
@@ -268,68 +306,95 @@ def editRestaurant(restaurant_id):
     if request.method == 'POST':
         if request.form['name']:
             editedRestaurant.name = request.form['name']
-            flash('Restaurant Successfully Edited %s' % editedRestaurant.name)
+            flash('Restaurant Successfully Edited %s' %
+                  editedRestaurant.name)
             return redirect(url_for('showRestaurants'))
     else:
-        return render_template('d_editRestaurant.html', restaurant=editedRestaurant, loginPicUrl = login_session['picture'])
+        return render_template('d_editRestaurant.html',
+                               restaurant=editedRestaurant,
+                               loginPicUrl=login_session['picture'])
 
 
 # Delete a restaurant
 @app.route('/distraqt/<int:restaurant_id>/delete/', methods=['GET', 'POST'])
+@login_required
 def deleteRestaurant(restaurant_id):
     """leverage restaurant paradigm to delete the category"""
-    ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
+    # OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
     # if user.id != restaurant.user_id:
     #     return redirect('/login')
-    restaurantToDelete = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    restaurantToDelete = session.query(
+        Restaurant).filter_by(id=restaurant_id).one()
     if request.method == 'POST':
         session.delete(restaurantToDelete)
         flash('%s Successfully Deleted' % restaurantToDelete.name)
         session.commit()
-        return redirect(url_for('showRestaurants', restaurant_id=restaurant_id))
+        return redirect(url_for('showRestaurants',
+                                restaurant_id=restaurant_id))
     else:
-        return render_template('d_deleteRestaurant.html', restaurant=restaurantToDelete, loginPicUrl = login_session['picture'])
+        return render_template('d_deleteRestaurant.html',
+                               restaurant=restaurantToDelete,
+                               loginPicUrl=login_session['picture'])
+
 
 @app.route('/distraqt/<int:restaurant_id>/')
 @app.route('/distraqt/<int:restaurant_id>/flowBlocks/')
+@login_required
 def showMenu(restaurant_id):
-    """leverage restaurant/menu paradigm to show all items in a particular category"""
+    """leverage restaurant/menu paradigm to show all items 
+    in a particular category"""
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(
         restaurant_id=restaurant_id).all()
-    return render_template('d_menu.html', items=items, restaurant=restaurant, loginPicUrl = login_session['picture'])
+    return render_template('d_menu.html', items=items,
+                           restaurant=restaurant,
+                           loginPicUrl=login_session['picture'])
 
 
 # Create a new menu item
-@app.route('/distraqt/<int:restaurant_id>/flowBlock/new/', methods=['GET', 'POST'])
+@app.route('/distraqt/<int:restaurant_id>/flowBlock/new/',
+           methods=['GET', 'POST'])
+@login_required
 def newMenuItem(restaurant_id):
-    """leverage restaurant/menu paradigm to create a new item in a particular category"""
-    ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
+    """leverage restaurant/menu paradigm to create a 
+    new item in a particular category"""
+# OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - 
+    # keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
     # if user.id != restaurant.user_id:
     #     return redirect('/login')
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if request.method == 'POST':
-        newItem = MenuItem(name=request.form['name'], description=request.form['description'], restaurant_id=restaurant_id, user_id=restaurant.user_id)
+        newItem = MenuItem(name=request.form['name'], description=request.form[
+                           'description'],
+                           restaurant_id=restaurant_id,
+                           user_id=restaurant.user_id)
         session.add(newItem)
         session.commit()
         flash('New Menu %s Item Successfully Created' % (newItem.name))
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
     else:
-        return render_template('d_newmenuitem.html', restaurant_id=restaurant_id, loginPicUrl = login_session['picture'])
+        return render_template('d_newmenuitem.html',
+                               restaurant_id=restaurant_id,
+                               loginPicUrl=login_session['picture'])
 
 
-@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET', 'POST'])
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit',
+           methods=['GET', 'POST'])
+@login_required
 def editMenuItem(restaurant_id, menu_id):
-    """leverage restaurant/menu paradigm to edit an item in a particular category"""
-    ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
+    """leverage restaurant/menu paradigm to edit an 
+    item in a particular category"""
+# OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP 
+# - keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
     # if user.id != restaurant.user_id:
-    #     return redirect('/login') #consider updating this to something more graceful
+    # return redirect('/login') #consider updating this to something more
+    # graceful
     editedItem = session.query(MenuItem).filter_by(id=menu_id).one()
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     if request.method == 'POST':
@@ -346,14 +411,22 @@ def editMenuItem(restaurant_id, menu_id):
         flash('Menu Item Successfully Edited')
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
     else:
-        return render_template('d_editmenuitem.html', restaurant_id=restaurant_id, menu_id=menu_id, item=editedItem, loginPicUrl = login_session['picture'])
+        return render_template('d_editmenuitem.html',
+                               restaurant_id=restaurant_id,
+                               menu_id=menu_id,
+                               item=editedItem,
+                               loginPicUrl=login_session['picture'])
 
 
 # Delete a menu item
-@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete', methods=['GET', 'POST'])
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete',
+           methods=['GET', 'POST'])
+@login_required
 def deleteMenuItem(restaurant_id, menu_id):
-    """leverage restaurant/menu paradigm to delete an item in a particular category"""
-    ## OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use ##
+    """leverage restaurant/menu paradigm to delete an 
+    item in a particular category"""
+# OLD LOGIC FOR USER AUTHENTICATION - 
+    #keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
     # if user.id != restaurant.user_id:
@@ -364,10 +437,12 @@ def deleteMenuItem(restaurant_id, menu_id):
         session.delete(itemToDelete)
         session.commit()
         flash('Menu Item Successfully Deleted')
-        return redirect(url_for('showMenu', restaurant_id=restaurant_id))
+        return redirect(url_for('showMenu',
+                                restaurant_id=restaurant_id))
     else:
-        return render_template('d_deleteMenuItem.html', item=itemToDelete, loginPicUrl = login_session['picture'])
-
+        return render_template('d_deleteMenuItem.html',
+                               item=itemToDelete,
+                               loginPicUrl=login_session['picture'])
 
 
 if __name__ == '__main__':
