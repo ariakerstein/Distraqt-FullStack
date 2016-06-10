@@ -258,7 +258,7 @@ def showRestaurants():
     # if restaurant.user == user.id:2
     # if'restaurant.user_id'=='username':
     # restaurants = session.query(Restaurant).order_by
-    #(asc(Restaurant.name))
+    # (asc(Restaurant.name))
     # #this is the default, since updated
     id = int(login_session['user_id'])
     restaurants = session.query(Restaurant).filter_by(
@@ -291,12 +291,13 @@ def newRestaurant():
         return render_template('d_newRestaurant.html',
                                loginPicUrl=login_session['picture'])
 
+
 @app.route('/distraqt/<int:restaurant_id>/edit/', methods=['GET', 'POST'])
 @login_required
 def editRestaurant(restaurant_id):
     """leverage restaurant paradigm to edit the category"""
     # OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP -
-    #keeping for possible future use #
+    # keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
     # if user.id != restaurant.user_id:
@@ -320,7 +321,8 @@ def editRestaurant(restaurant_id):
 @login_required
 def deleteRestaurant(restaurant_id):
     """leverage restaurant paradigm to delete the category"""
-    # OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - keeping for possible future use #
+    # OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP
+    # - keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
     # if user.id != restaurant.user_id:
@@ -426,7 +428,7 @@ def deleteMenuItem(restaurant_id, menu_id):
     """leverage restaurant/menu paradigm to delete an 
     item in a particular category"""
 # OLD LOGIC FOR USER AUTHENTICATION - 
-    #keeping for possible future use #
+    # keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
     # if user.id != restaurant.user_id:
