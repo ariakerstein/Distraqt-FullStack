@@ -251,7 +251,7 @@ def showRestaurants():
     """Show all categories"""
     if 'username' not in login_session:
         return redirect('/welcome')
-# OLD LOGIC FOR USER AUTHENTICATION - 
+# OLD LOGIC FOR USER AUTHENTICATION
     # keeping for possible future use #
     # if 'user.name' == 'restaurant.user':
     # if username not in restaurant.user_id:
@@ -346,7 +346,7 @@ def deleteRestaurant(restaurant_id):
 @app.route('/distraqt/<int:restaurant_id>/flowBlocks/')
 @login_required
 def showMenu(restaurant_id):
-    """leverage restaurant/menu paradigm to show all items 
+    """leverage restaurant/menu paradigm to show all items
     in a particular category"""
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(
@@ -361,9 +361,9 @@ def showMenu(restaurant_id):
            methods=['GET', 'POST'])
 @login_required
 def newMenuItem(restaurant_id):
-    """leverage restaurant/menu paradigm to create a 
+    """leverage restaurant/menu paradigm to create a \
     new item in a particular category"""
-# OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP - 
+# OLD LOGIC FOR USER AUTHENTICATION-
     # keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -389,9 +389,9 @@ def newMenuItem(restaurant_id):
            methods=['GET', 'POST'])
 @login_required
 def editMenuItem(restaurant_id, menu_id):
-    """leverage restaurant/menu paradigm to edit an 
+    """leverage restaurant/menu paradigm to edit an\
     item in a particular category"""
-# OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP 
+# OLD LOGIC FOR USER AUTHENTICATION WITHIN THE APP
 # - keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
@@ -426,9 +426,9 @@ def editMenuItem(restaurant_id, menu_id):
            methods=['GET', 'POST'])
 @login_required
 def deleteMenuItem(restaurant_id, menu_id):
-    """leverage restaurant/menu paradigm to delete an 
+    """leverage restaurant/menu paradigm to delete an
     item in a particular category"""
-# OLD LOGIC FOR USER AUTHENTICATION - 
+# OLD LOGIC FOR USER AUTHENTICATION -
     # keeping for possible future use #
     # if 'username' not in login_session:
     #     return redirect('/login')
