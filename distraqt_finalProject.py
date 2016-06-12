@@ -28,13 +28,11 @@ APPLICATION_NAME = "Restaurant Menu Application"
 
 
 # reinstate sqlite for final project review purposes:
-engine = create_engine('sqlite:///distraqtJun6.db')
+# engine = create_engine('sqlite:///distraqtJun6.db')
 
 # functional postgres db - commented out for final project submission purposes
 # Create postgres db with the following name #
-# engine = create_engine(
-# postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.
-# compute-1.amazonaws.com:5432/dif8vbb8o8q66')
+engine = create_engine('postgres://cuymriuwjdobmm:GmodrGMvy-uWsL3_4XOJHMhyLr@ec2-54-225-79-232.compute-1.amazonaws.com:5432/dif8vbb8o8q66')
 
 Base.metadata.bind = engine
 

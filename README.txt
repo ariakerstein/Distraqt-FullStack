@@ -4,7 +4,6 @@ Item Catalog Final Project (called distraqt) for full stack nanodegree:
 This project is based on Udacity's full stack nanodegree building a fully functional webapp containing the following functionality:
 * CRUD functionality
 * Working postgres database 
-* Deployed to Heroku
 * Google authorization (FB authorization is currently deprecated)
 * JSON endpoints
 * all data is pushed to a postgres db, tables described in 'distraqt_database_setup.py'
@@ -14,6 +13,7 @@ e.g., '/distraqt/<int:restaurant_id>/menu/<int:menu_id>/JSON'
 * Navbar has logic to show login/logout functionality dependent on users auth status. Navbar returns google profile picture.
 * Styled using Twitter bootstrap
 * JS countdown timer with form submission logic
+* Deployed to Heroku
 
 A note on naming conventions. 
 The Distraqt project files generally mirror the final project files though prefixed with the convention 'd_*' or 'distraqt_*'.
