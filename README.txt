@@ -1,13 +1,12 @@
 Item Catalog Final Project (called distraqt) for full stack nanodegree:
 -----------------------------------------------------------------------
 
-This project is based on Udacity's full stack nanodegree building a fully functional webapp containing the following functionality:
-* CRUD functionality
+This project is loosely based on Udacity's full stack nanodegree building a fully functional webapp containing the following functionality:
+* Full CRUD functionality
 * Working postgres database 
 * Google authorization (FB authorization is currently deprecated)
-* JSON endpoints
-* all data is pushed to a postgres db, tables described in 'distraqt_database_setup.py'
-* JSON endpoints available via */JSON. Routes are described in 'distraqt_finalProject.py'
+* JSON endpoints -- available via */JSON. Routes are described in 'distraqt_finalProject.py'
+* all data is pushed to a postgres db, tables described in 'distraqt_database_setup.py' (previously setup as sqlite)
 e.g., '/distraqt/<int:restaurant_id>/menu/<int:menu_id>/JSON'
 * All pages are currently private by user; unauthenticated users will only have access to the welcome page
 * Navbar has logic to show login/logout functionality dependent on users auth status. Navbar returns google profile picture.
@@ -16,7 +15,7 @@ e.g., '/distraqt/<int:restaurant_id>/menu/<int:menu_id>/JSON'
 * Deployed to Heroku
 
 A note on naming conventions. 
-The Distraqt project files generally mirror the final project files though prefixed with the convention 'd_*' or 'distraqt_*'.
+The Distraqt project files generally mirror final project files though prefixed with the convention 'd_*' or 'distraqt_*'.
 
 Folder overview:
 - /catalog: contains the main app files 
@@ -32,13 +31,13 @@ Testing the functionality:
 -- Edit/delete functionality exists both at the category and at the item level
 
 
-Running the Final Project App:
--------------------------------
+Running the App:
+----------------
 
 0. Clone the repo:
 $ git clone https://github.com/ariakerstein/Distraqt-FullStack.git
 
-1. Run vagrant and navigate to the relevant folder (assuming this is already configured for purposes of this file):
+1. Run vagrant and navigate to the relevant folder (assuming this is already configured):
 >>> vagrant up
 >>> vagrant ssh
 
